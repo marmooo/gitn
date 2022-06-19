@@ -5,7 +5,7 @@ A git manager for many repositories.
 ## Installation
 
 ```
-deno install --allow-read --allow-write --allow-run \
+deno install --allow-read --allow-write --allow-run --allow-env \
 https://raw.githubusercontent.com/marmooo/gitn/main/gitn.js
 ```
 
