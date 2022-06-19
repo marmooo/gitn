@@ -84,7 +84,7 @@ if (Deno.args.length < 3) {
     case "pull":
     case "push":
       gitCommand(Deno.args[0], Deno.args[1], Deno.args[2], Deno.args.slice(3));
-      // falls through
+      break;
     default:
       showHelp();
   }
