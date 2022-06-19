@@ -7,11 +7,10 @@ async function gitClone(repoDir, repoListFile) {
   const fileReader = await Deno.open(repoListFile);
   for await (const repoNameDir of readLines(fileReader)) {
     if (repoNameDir.startsWith(";")) continue;
+    console.log(`%c${repoNameDir}`, "font-weight: bold");
     try {
-      console.log(`%c${repoNameDir}`, "font-weight: bold");
       await $`git clone ${repoNameDir}`;
     } catch (err) {
-      console.log(`%c${repoNameDir}`, "font-weight: bold");
       console.log(err);
     }
   }
@@ -28,12 +27,11 @@ async function gitCommand(cmd, repoDir, repoListFile, args = []) {
       repoName = url.split("/").at(-1);
     }
     Deno.chdir(`${repoDir}${path.sep}${repoName}`);
+    console.log(`%c${repoName}`, "font-weight: bold");
     try {
       const result = await $`git ${cmd} ${args.join(" ")}`;
-      console.log(`%c${repoName}`, "font-weight: bold");
       console.log(result);
     } catch (err) {
-      console.log(`%c${repoName}`, "font-weight: bold");
       console.log(err);
     }
   }
