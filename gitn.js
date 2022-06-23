@@ -60,30 +60,7 @@ if (Deno.args.length < 3) {
     case "clone":
       gitClone(Deno.args[1], Deno.args[2], Deno.args.slice(3));
       break;
-    case "init":
-    case "add":
-    case "mv":
-    case "restore":
-    case "rm":
-    case "bisect":
-    case "diff":
-    case "grep":
-    case "log":
-    case "show":
-    case "status":
-    case "branch":
-    case "commit":
-    case "merge":
-    case "rebase":
-    case "reset":
-    case "switch":
-    case "tag":
-    case "fetch":
-    case "pull":
-    case "push":
-      gitCommand(Deno.args[0], Deno.args[1], Deno.args[2], Deno.args.slice(3));
-      break;
     default:
-      showHelp();
+      gitCommand(Deno.args[0], Deno.args[1], Deno.args[2], Deno.args.slice(3));
   }
 }
