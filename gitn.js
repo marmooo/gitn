@@ -24,6 +24,7 @@ async function gitCommand(cmd, repoDir, repoListFile, args = []) {
     let [url, repoName] = repoNameDir.split(" ");
     if (!repoName) {
       if (url.endsWith("/")) url = url.slice(0, -1);
+      if (url.endsWith(".git")) url = url.slice(0, -4);
       repoName = url.split("/").at(-1);
     }
     Deno.chdir(`${repoDir}${path.sep}${repoName}`);
