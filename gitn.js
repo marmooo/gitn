@@ -30,7 +30,8 @@ async function gitCommand(cmd, repoDir, repoListFile, args = []) {
     Deno.chdir(`${repoDir}${path.sep}${repoName}`);
     console.log(`%c${repoName}`, "font-weight: bold");
     try {
-      const result = await $`git ${cmd} ${args.join(" ")}`;
+      const quotedArgs = args.map((arg) => `"${arg}"`).join(" ");
+      const result = await $`git ${cmd} ${quotedArgs}`;
       console.log(result);
     } catch (err) {
       console.log(err);
