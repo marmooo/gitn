@@ -3,8 +3,8 @@ import { readLines } from "https://deno.land/std/io/mod.ts";
 import { $ } from "https://deno.land/x/deno_dx/mod.ts";
 
 async function gitClone(repoDir, repoListFile) {
-  Deno.chdir(repoDir);
   const fileReader = await Deno.open(repoListFile);
+  Deno.chdir(repoDir);
   for await (const repoNameDir of readLines(fileReader)) {
     if (repoNameDir.startsWith(";")) continue;
     console.log(`%c${repoNameDir}`, "font-weight: bold");
