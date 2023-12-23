@@ -1,6 +1,6 @@
 import * as path from "https://deno.land/std/path/mod.ts";
 import { readLines } from "https://deno.land/std/io/mod.ts";
-import { $ } from "https://deno.land/x/deno_dx/mod.ts";
+import { $ } from "https://deno.land/x/deno_dx@0.3.1/mod.ts";
 
 async function gitClone(repoDir, repoListFile) {
   const fileReader = await Deno.open(repoListFile);
