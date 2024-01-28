@@ -1,11 +1,14 @@
 import * as path from "https://deno.land/std/path/mod.ts";
-import { readLines } from "https://deno.land/std/io/mod.ts";
+import { TextLineStream } from "https://deno.land/std/streams/mod.ts";
 import { $ } from "npm:zx@7.2.3";
 
 async function gitClone(repoDir, repoListFile) {
-  const fileReader = await Deno.open(repoListFile);
   Deno.chdir(repoDir);
-  for await (const repoNameDir of readLines(fileReader)) {
+  const file = await Deno.open(repoListFile);
+  const lineStream = file.readable
+    .pipeThrough(new TextDecoderStream())
+    .pipeThrough(new TextLineStream());
+  for await (const repoNameDir of lineStream) {
     if (repoNameDir.startsWith(";")) continue;
     console.log(`%c${repoNameDir}`, "font-weight: bold");
     try {
@@ -18,8 +21,11 @@ async function gitClone(repoDir, repoListFile) {
 
 async function gitCommand(cmd, repoDir, repoListFile, args = []) {
   repoDir = path.resolve(repoDir);
-  const fileReader = await Deno.open(repoListFile);
-  for await (const repoNameDir of readLines(fileReader)) {
+  const file = await Deno.open(repoListFile);
+  const lineStream = file.readable
+    .pipeThrough(new TextDecoderStream())
+    .pipeThrough(new TextLineStream());
+  for await (const repoNameDir of lineStream) {
     if (repoNameDir.startsWith(";")) continue;
     let [url, repoName] = repoNameDir.split(" ");
     if (!repoName) {
