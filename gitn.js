@@ -1,6 +1,6 @@
 import * as path from "https://deno.land/std/path/mod.ts";
 import { readLines } from "https://deno.land/std/io/mod.ts";
-import { $ } from "https://deno.land/x/deno_dx@0.3.1/mod.ts";
+import { $ } from "npm:zx@7.2.3";
 
 async function gitClone(repoDir, repoListFile) {
   const fileReader = await Deno.open(repoListFile);
@@ -9,7 +9,7 @@ async function gitClone(repoDir, repoListFile) {
     if (repoNameDir.startsWith(";")) continue;
     console.log(`%c${repoNameDir}`, "font-weight: bold");
     try {
-      await $`git clone ${repoNameDir}`;
+      await $`git clone ${repoNameDir}`.quiet();
     } catch (err) {
       console.log(err);
     }
@@ -31,7 +31,7 @@ async function gitCommand(cmd, repoDir, repoListFile, args = []) {
     console.log(`%c${repoName}`, "font-weight: bold");
     try {
       const quotedArgs = args.map((arg) => `"${arg}"`).join(" ");
-      const result = await $`git ${cmd} ${quotedArgs}`;
+      const result = await $`git ${cmd} ${quotedArgs}`.quiet();
       console.log(result);
     } catch (err) {
       console.log(err);
