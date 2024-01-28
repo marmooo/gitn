@@ -38,7 +38,7 @@ async function gitCommand(cmd, repoDir, repoListFile, args = []) {
     try {
       const quotedArgs = args.map((arg) => `"${arg}"`).join(" ");
       const result = await $`git ${cmd} ${quotedArgs}`.quiet();
-      console.log(result);
+      console.log(result.stdout);
     } catch (err) {
       console.log(err);
     }
