@@ -1,4 +1,4 @@
-import * as path from "https://deno.land/std/path/mod.ts";
+import { SEPARATOR } from "https://deno.land/std/path/constants.ts";
 import { TextLineStream } from "https://deno.land/std/streams/mod.ts";
 import { $ } from "npm:zx@7.2.3";
 
@@ -33,7 +33,7 @@ async function gitCommand(cmd, repoDir, repoListFile, args = []) {
       if (url.endsWith(".git")) url = url.slice(0, -4);
       repoName = url.split("/").at(-1);
     }
-    Deno.chdir(`${repoDir}${path.sep}${repoName}`);
+    Deno.chdir(`${repoDir}${SEPARATOR}${repoName}`);
     console.log(`%c${repoName}`, "font-weight: bold");
     try {
       const quotedArgs = args.map((arg) => `"${arg}"`).join(" ");
