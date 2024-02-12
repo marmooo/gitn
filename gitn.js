@@ -4,7 +4,7 @@ import { TextLineStream } from "https://deno.land/std/streams/mod.ts";
 import { $ } from "npm:zx@7.2.3";
 
 async function gitClone(repoDir, repoListFile) {
-  Deno.chdir(repoDir);
+  $.cwd = repoDir;
   const file = await Deno.open(repoListFile);
   const lineStream = file.readable
     .pipeThrough(new TextDecoderStream())
@@ -34,7 +34,7 @@ async function gitCommand(cmd, repoDir, repoListFile, args = []) {
       if (url.endsWith(".git")) url = url.slice(0, -4);
       repoName = url.split("/").at(-1);
     }
-    Deno.chdir(`${repoDir}${SEPARATOR}${repoName}`);
+    $.cwd = `${repoDir}${SEPARATOR}${repoName}`;
     console.log(`%c${repoName}`, "font-weight: bold");
     try {
       const quotedArgs = args.map((arg) => `"${arg}"`).join(" ");
