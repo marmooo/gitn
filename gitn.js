@@ -1,3 +1,4 @@
+import { resolve } from "https://deno.land/std/path/mod.ts";
 import { SEPARATOR } from "https://deno.land/std/path/constants.ts";
 import { TextLineStream } from "https://deno.land/std/streams/mod.ts";
 import { $ } from "npm:zx@7.2.3";
@@ -20,7 +21,7 @@ async function gitClone(repoDir, repoListFile) {
 }
 
 async function gitCommand(cmd, repoDir, repoListFile, args = []) {
-  repoDir = path.resolve(repoDir);
+  repoDir = resolve(repoDir);
   const file = await Deno.open(repoListFile);
   const lineStream = file.readable
     .pipeThrough(new TextDecoderStream())
