@@ -37,8 +37,7 @@ async function gitCommand(cmd, repoDir, repoListFile, args = []) {
     $.cwd = `${repoDir}${SEPARATOR}${repoName}`;
     console.log(`%c${repoName}`, "font-weight: bold");
     try {
-      const quotedArgs = args.map((arg) => `"${arg}"`).join(" ");
-      const result = await $`git ${cmd} ${quotedArgs}`.quiet();
+      const result = await $`git ${cmd} ${args}`.quiet();
       console.log(result.stdout);
     } catch (err) {
       console.log(err);
