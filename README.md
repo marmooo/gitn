@@ -16,7 +16,7 @@ gitn clone vendor/ repos.lst
 gitn pull vendor/ repos.lst
 gitn push vendor/ repos.lst
 gitn status . repos.lst
-gitn add . repos.lst *
+gitn add . repos.lst -A
 gitn commit . repos.lst -m "comment"
 ```
 
