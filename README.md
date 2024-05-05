@@ -5,7 +5,7 @@ A git manager for many repositories.
 ## Installation
 
 ```
-deno install -fr -A \
+deno install -fr -A -g \
 https://raw.githubusercontent.com/marmooo/gitn/main/gitn.js
 ```
 
