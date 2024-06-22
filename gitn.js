@@ -1,6 +1,6 @@
-import { resolve } from "https://deno.land/std/path/resolve.ts";
-import { SEPARATOR } from "https://deno.land/std/path/constants.ts";
-import { TextLineStream } from "https://deno.land/std/streams/text_line_stream.ts";
+import { resolve } from "jsr:@std/path/resolve";
+import { SEPARATOR } from "jsr:@std/path/constants";
+import { TextLineStream } from "jsr:@std/streams/text-line-stream";
 import { $ } from "npm:zx@8.1.3";
 
 async function gitClone(repoDir, repoListFile) {
