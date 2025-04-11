@@ -1,7 +1,7 @@
 import { resolve } from "jsr:@std/path/resolve";
 import { SEPARATOR } from "jsr:@std/path/constants";
 import { TextLineStream } from "jsr:@std/streams/text-line-stream";
-import { $ } from "npm:zx@8.1.9";
+import { $ } from "npm:zx@8.5.2-lite";
 
 async function gitClone(repoDir, repoListFile) {
   $.cwd = repoDir;
