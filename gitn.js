@@ -1,6 +1,7 @@
-import { resolve, SEPARATOR } from "@std/path";
-import { TextLineStream } from "@std/streams";
-import { $ } from "zx";
+// deno-lint-ignore-file no-import-prefix
+import { resolve, SEPARATOR } from "jsr:@std/path@1.1.6";
+import { TextLineStream } from "jsr:@std/streams@1.1.2";
+import { $ } from "npm:zx@8.8.5-lite";
 
 async function gitClone(repoDir, repoListFile) {
   $.cwd = repoDir;
